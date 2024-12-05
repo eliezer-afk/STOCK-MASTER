@@ -1,5 +1,4 @@
 // Configuracion del servidor
-
 import express from 'express'
 import colors from 'colors'
 import router from './routers/router'
