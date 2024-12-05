@@ -4,10 +4,12 @@
   "description": "proyecto con Express y TypeScript",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node src/index.ts",
     "test": "jest --detectOpenHandles",
     "test:coverage": "npm run pretest && jest --detectOpenHandles --coverage",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "pretest": "ts-node ./src/data --clear"
+    "pretest": "ts-node ./src/data --clear",
+    "copy": "COPY . /app"
   },
   "author": "eliriper123@gmail.com",
   "license": "ISC",
@@ -23,6 +25,7 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "ts-node": "^10.0.0",
     "colors": "^1.4.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
