@@ -13,7 +13,6 @@ router.get('/:id',
     getProductById
 )
 
-
 router.post('/', 
     
     // Validacion
@@ -29,7 +28,6 @@ router.post('/',
     handleInputErrors,
     createProduct
 )
-
 
 router.put('/:id',
     param('id').isInt().withMessage('ID no valido'),    
