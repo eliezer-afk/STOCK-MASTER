@@ -1,20 +1,21 @@
 import request from "supertest";
-import server, { connectDB } from "../server";
+import server from "../server";
+import { connectDB } from "../server";
 import db from "../config/db";
 import http from 'http';
 
-const httpServer = http.createServer(server);
+let serverInstance: http.Server;
 
+beforeAll(() => {
+    serverInstance = server.listen(4000); // Guarda la referencia al servidor HTTP
+});
 
 describe('GET /api', () => {
     it('should send back a json response', async () => {
-        const res = await request(server).get('/api');
+        const res = await request(serverInstance).get('/api');
         expect(res.status).toBe(200);
         expect(res.headers['content-type']).toMatch(/json/);
         expect(res.body.msg).toBe('Desde API');
-
-        expect(res.status).not.toBe(404);
-        expect(res.body.msg).not.toBe('desde api');
     });
 });
 
@@ -29,9 +30,9 @@ describe('connectDB', () => {
         }
     });
 });
-    
+
 // Asegúrate de cerrar el servidor y la conexión a la base de datos después de las pruebas
 afterAll(async () => {
-    await httpServer.close();
+    await serverInstance.close(); // Cierra el servidor HTTP
     // Cierra la conexión a la base de datos si es necesario
 });
