@@ -1,18 +1,14 @@
-# Usar una imagen de Node.js
-FROM node:16
+FROM node:14
 
-# Crear un directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiar los archivos del proyecto
 COPY package*.json ./
+
+RUN npm install -g ts-node
+
+
 COPY . .
 
-# Instalar dependencias
-RUN npm install
-
-# Exponer el puerto que el servidor usará
 EXPOSE 3000
 
-# Ejecutar la aplicación
 CMD ["npm", "start"]
